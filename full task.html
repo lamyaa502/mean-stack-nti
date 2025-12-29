@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>system management</title>
+    <style>
+        label {
+            margin: 10px;
+            color: blue
+        }
+    </style>
+</head>
+
+<body>
+    <p>students system</p>
+    <label for="student_name">student name:</label>
+    <input type="text" id="student_name" name="student_name">
+
+    <label for="student_mark">student mark:</label>
+    <input type="number" id="student_mark" name="student_mark">
+
+    <button id="addBtn">Add Student</button>
+    <button id="searchBtn">Search Student</button>
+
+
+    <script>
+        let arr = ["osama", "marwa", "aya"];
+        let arr2 = [60, 70, 80];
+        for (let value of arr2) {
+            alert(value)
+        }
+
+
+
+        for (let i = 0; i < arr.length; i++) {
+            alert(arr[i] + " has got " + arr2[i])
+        }
+
+        function sum(arr2) {
+            let sum = 0;
+            for (let i = 0; i < arr2.length; i++) {
+                sum += arr2[i];
+            }
+            return sum;
+        }
+        let countt = sum(arr2);
+        alert("the sum is " + countt)
+        alert(countt / arr2.length)
+        let mark = countt / arr2.length;
+        switch (true) {
+            case (mark >= 50):
+                alert("successful student");
+                break;
+            case (mark < 50):
+                alert("failed student");
+                break;
+
+            default:
+                alert("student result not found");
+        }
+        alert("the student has a mark " + mark);
+        let the_first = Math.max(...arr2);
+        alert("the first student has a mark " + the_first);
+        let the_last = Math.min(...arr2);
+        alert("the last student has a mark " + the_last);
+        document.getElementById('addBtn').addEventListener('click', function() {
+            let name = document.getElementById('student_name').value.trim();
+            let mark = parseInt(document.getElementById('student_mark').value);
+            if (name && !isNaN(mark) && mark >= 0 && mark <= 100) {
+                arr.push(name);
+                arr2.push(mark);
+                alert("Student added: " + name + " with mark " + mark);
+                document.getElementById('student_name').value = '';
+                document.getElementById('student_mark').value = '';
+            } else {
+                alert("Invalid input. Name must not be empty, mark must be a number between 0 and 100.");
+            }
+        });
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            let name = document.getElementById('student_name').value.trim();
+            let index = arr.indexOf(name);
+            if (index !== -1) {
+                alert("The student is found. Their degree is " + arr2[index]);
+            } else {
+                alert("Student name not found");
+            }
+        });
+    </script>
+</body>
+
+</html>
